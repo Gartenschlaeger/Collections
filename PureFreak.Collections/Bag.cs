@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace Collections
+namespace PureFreak.Collections
 {
     [DebuggerDisplay("Count = {_count}")]
     public class Bag<TValue> : ICollection<TValue>

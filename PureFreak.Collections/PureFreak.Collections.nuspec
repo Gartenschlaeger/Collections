@@ -1,0 +1,27 @@
+﻿<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>PureFreak.Collections</id>
+    <version>1.0.0</version>
+    <title>PureFreak.Collections</title>
+    <description>Collection of extended or additional collections.</description>
+    <authors>Kai Gartenschläger</authors>
+
+    <projectUrl>https://github.com/PureFreak/Collections</projectUrl>
+    <!--<iconUrl></iconUrl>-->
+
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://raw.githubusercontent.com/PureFreak/Collections/master/LICENSE</licenseUrl>
+    <copyright>Copyright 2018</copyright>
+
+    <releaseNotes>Added Bag and BitSet.</releaseNotes>
+
+    <!--<tags></tags>-->
+  </metadata>
+
+  <files>
+    <file src="bin\Release\PureFreak.Collections.dll" target="lib\net45" />
+    <file src="bin\Release\PureFreak.Collections.pdb" target="lib\net45" />
+    <file src="bin\Release\PureFreak.Collections.xml" target="lib\net45" />
+  </files>
+</package>

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2003
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Collections", "Collections\Collections.csproj", "{C06032A2-E5E9-4337-AE79-1A3B76D49D67}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PureFreak.Collections", "PureFreak.Collections\PureFreak.Collections.csproj", "{C06032A2-E5E9-4337-AE79-1A3B76D49D67}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

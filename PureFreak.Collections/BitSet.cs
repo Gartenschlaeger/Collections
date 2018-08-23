@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Text;
 
-namespace Collections
+namespace PureFreak.Collections
 {
     [DebuggerDisplay("Capacity = {_array.Length}")]
     public class BitSet

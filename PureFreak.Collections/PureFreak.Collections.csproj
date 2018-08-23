@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bag.cs" />
+    <Compile Include="BinaryHeap.cs" />
     <Compile Include="BitSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

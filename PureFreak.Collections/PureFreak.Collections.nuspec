@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>PureFreak.Collections</id>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <title>PureFreak.Collections</title>
     <description>Collection of extended or additional collections.</description>
     <authors>Kai Gartenschläger</authors>
@@ -14,7 +14,7 @@
     <licenseUrl>https://raw.githubusercontent.com/PureFreak/Collections/master/LICENSE</licenseUrl>
     <copyright>Copyright 2018</copyright>
 
-    <releaseNotes>Added BinaryHeap.</releaseNotes>
+    <releaseNotes>Added Tree.</releaseNotes>
 
     <!--<tags></tags>-->
   </metadata>

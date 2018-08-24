@@ -63,6 +63,17 @@ namespace PureFreak.Collections
             _array.Not();
         }
 
+        public bool[] ToArray()
+        {
+            var result = new bool[_array.Length];
+            for (int i = 0; i < _array.Length; i++)
+            {
+                result[i] = _array.Get(i);
+            }
+
+            return result;
+        }
+
         #endregion
 
         #region Properties

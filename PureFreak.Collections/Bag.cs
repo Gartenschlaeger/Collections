@@ -6,11 +6,11 @@ using System.Diagnostics;
 namespace PureFreak.Collections
 {
     [DebuggerDisplay("Count = {_count}")]
-    public class Bag<TValue> : ICollection<TValue>
+    public class Bag<T> : ICollection<T>
     {
         #region Fields
 
-        private TValue[] _buffer;
+        private T[] _buffer;
         private int _count;
 
         #endregion
@@ -19,7 +19,7 @@ namespace PureFreak.Collections
 
         public Bag(int capacity = 100)
         {
-            _buffer = new TValue[capacity];
+            _buffer = new T[capacity];
             _count = 0;
         }
 
@@ -36,7 +36,7 @@ namespace PureFreak.Collections
             if (_buffer.Length != newCapacity)
             {
                 var oldBuffer = _buffer;
-                var newBuffer = new TValue[newCapacity];
+                var newBuffer = new T[newCapacity];
 
                 Array.Copy(oldBuffer, 0, newBuffer, 0, oldBuffer.Length);
 
@@ -48,7 +48,7 @@ namespace PureFreak.Collections
 
         #region Methods
 
-        public void Add(TValue value)
+        public void Add(T value)
         {
             EnsureCapacity(_count + 1);
 
@@ -56,7 +56,7 @@ namespace PureFreak.Collections
             _count++;
         }
 
-        public void Set(int index, TValue value)
+        public void Set(int index, T value)
         {
             EnsureCapacity(index + 1);
 
@@ -66,10 +66,10 @@ namespace PureFreak.Collections
                 _count = index + 1;
         }
 
-        public TValue Get(int index)
+        public T Get(int index)
         {
             if (index >= _count)
-                return default(TValue);
+                return default(T);
 
             return _buffer[index];
         }
@@ -78,13 +78,13 @@ namespace PureFreak.Collections
         {
             for (int i = 0; i < _count; i++)
             {
-                _buffer[i] = default(TValue);
+                _buffer[i] = default(T);
             }
 
             _count = 0;
         }
 
-        public bool Contains(TValue value)
+        public bool Contains(T value)
         {
             for (int index = _count - 1; index >= 0; index--)
             {
@@ -95,14 +95,14 @@ namespace PureFreak.Collections
             return false;
         }
 
-        public bool Remove(TValue value)
+        public bool Remove(T value)
         {
             for (int index = _count - 1; index >= 0; index--)
             {
                 if (value.Equals(_buffer[index]))
                 {
                     _buffer[index] = _buffer[_count - 1];
-                    _buffer[_count - 1] = default(TValue);
+                    _buffer[_count - 1] = default(T);
 
                     _count--;
 
@@ -113,39 +113,45 @@ namespace PureFreak.Collections
             return false;
         }
 
-        public TValue RemoveLastElement()
+        public T RemoveLastElement()
         {
             if (_count > 0)
             {
                 var result = _buffer[_count - 1];
 
-                _buffer[_count - 1] = default(TValue);
+                _buffer[_count - 1] = default(T);
                 _count--;
 
                 return result;
             }
             else
             {
-                return default(TValue);
+                return default(T);
             }
         }
 
-        public void CopyTo(TValue[] array, int arrayIndex)
+        public void CopyTo(T[] array, int arrayIndex)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerator<TValue> GetEnumerator()
+        public IEnumerator<T> GetEnumerator()
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < _count; i++)
+            {
+                if (_buffer[i] == null)
+                    continue;
+
+                yield return _buffer[i];
+            }
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return GetEnumerator();
         }
 
-        public TValue this[int index]
+        public T this[int index]
         {
             get { return Get(index); }
             set { Set(index, value); }

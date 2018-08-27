@@ -2,9 +2,9 @@
 <package >
   <metadata>
     <id>PureFreak.Collections</id>
-    <version>1.0.4</version>
+    <version>1.0.5</version>
     <title>PureFreak.Collections</title>
-    <description>Collection of extended or additional collections.</description>
+    <description>Some additinal collection and extensions.</description>
     <authors>Kai Gartenschläger</authors>
 
     <projectUrl>https://github.com/PureFreak/Collections</projectUrl>
@@ -14,7 +14,7 @@
     <licenseUrl>https://raw.githubusercontent.com/PureFreak/Collections/master/LICENSE</licenseUrl>
     <copyright>Copyright 2018</copyright>
 
-    <releaseNotes>Added Tree.</releaseNotes>
+    <releaseNotes>Added CircularBuffer.</releaseNotes>
 
     <!--<tags></tags>-->
   </metadata>

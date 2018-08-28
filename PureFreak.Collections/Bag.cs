@@ -6,7 +6,7 @@ using System.Diagnostics;
 namespace PureFreak.Collections
 {
     [DebuggerDisplay("Count = {_count}")]
-    public class Bag<T> : ICollection<T>
+    public class Bag<T> : IBag<T>
     {
         #region Fields
 
@@ -128,6 +128,11 @@ namespace PureFreak.Collections
             {
                 return default(T);
             }
+        }
+
+        public T[] ToArray()
+        {
+            throw new NotImplementedException();
         }
 
         public void CopyTo(T[] array, int arrayIndex)

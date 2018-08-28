@@ -5,7 +5,7 @@ using System.Diagnostics;
 namespace PureFreak.Collections
 {
     [DebuggerDisplay("Count = {_count}")]
-    public sealed class BinaryHeap<T>
+    public sealed class BinaryHeap<T> : IBinaryHeap<T>
     {
         #region Consts
 

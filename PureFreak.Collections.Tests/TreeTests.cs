@@ -1,51 +1,47 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace PureFreak.Collections.Tests
 {
     [TestClass]
     public class TreeTests
     {
-        [TestMethod]
-        public void NodesCount()
-        {
-            var tree = new Tree<int, string>();
-
-            var users = tree.Create(1, "Users");
-
-            users.Create(1, "Max Mustermann");
-            users.Create(2, "Susi Strolch");
-
-            Assert.AreEqual(1, tree.Count);
-            Assert.AreEqual(2, users.Count);
-        }
+        #region Test methods
 
         [TestMethod]
-        public void Name()
+        public void AddNodes()
         {
-            var tree = new Tree<string, int>();
+            var tree = new Tree<int>();
+            tree.Nodes.Create("LICENSE.txt");
+            tree.Nodes.Create("README.txt");
 
-            var windows = tree.Create("Windows", 1);
-            var system = windows.Create("System", 2);
-            var temp = windows.Create("Temp", 3);
-
-            Assert.AreEqual("Windows", windows.Name);
-            Assert.AreEqual("System", system.Name);
-            Assert.AreEqual("Temp", temp.Name);
+            Assert.AreEqual(2, tree.Nodes.Count);
         }
 
         [TestMethod]
         public void FullName()
         {
-            var tree = new Tree<string, int>();
-            tree.Separator = '\\';
+            var tree = new Tree<int>();
+            var textFiles = tree.Nodes.Create("Texts");
+            var license = textFiles.Nodes.Create("LICENSE.txt");
+            var readme = textFiles.Nodes.Create("README.txt");
+            var tutorials = textFiles.Nodes.Create("Tutorials");
+            var general = tutorials.Nodes.Create("General.txt");
 
-            var windows = tree.Create("Windows", 1);
-            var system = windows.Create("System", 2);
-            var temp = windows.Create("Temp", 3);
-
-            Assert.AreEqual("Windows", windows.FullName);
-            Assert.AreEqual("Windows\\System", system.FullName);
-            Assert.AreEqual("Windows\\Temp", temp.FullName);
+            Assert.AreEqual("/Texts/LICENSE.txt", license.FullName);
+            Assert.AreEqual("/Texts/README.txt", readme.FullName);
+            Assert.AreEqual("/Texts/Tutorials/General.txt", general.FullName);
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void AddUniqueName()
+        {
+            var tree = new Tree<int>();
+            tree.Nodes.Create("test.txt");
+            tree.Nodes.Create("test.txt");
+        }
+
+        #endregion
     }
 }

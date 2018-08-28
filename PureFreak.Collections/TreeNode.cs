@@ -1,71 +1,66 @@
 ﻿using System;
-using System.Diagnostics;
 
 namespace PureFreak.Collections
 {
-    [DebuggerDisplay("Nodes = {_nodes.Count}, FullName = {FullName}")]
-    public class TreeNode<TKey, TValue> : Tree<TKey, TValue>
+    public class TreeNode<T> : ITreeNode<T>
     {
         #region Fields
 
-        private readonly Tree<TKey, TValue> _tree;
-        private readonly TreeNode<TKey, TValue> _parent;
-        private readonly TKey _key;
-        private TValue _value;
+        private readonly Tree<T> _tree;
+        private readonly TreeNode<T> _parent;
+
+        private string _name;
+        private T _value;
+
+        private readonly TreeNodeCollection<T> _nodes;
 
         #endregion
 
         #region Constructor
 
-        public TreeNode(Tree<TKey, TValue> tree, TKey key, TValue value)
-            : this(tree, null, key, value)
-        {
-            _key = key;
-        }
-
-        public TreeNode(Tree<TKey, TValue> tree, TreeNode<TKey, TValue> parent, TKey key, TValue value)
+        public TreeNode(Tree<T> tree, TreeNode<T> parent, string name, T value)
         {
             if (tree == null)
                 throw new ArgumentNullException(nameof(tree));
+            if (string.IsNullOrEmpty(name))
+                throw new ArgumentException("Cannot be empty", nameof(name));
 
             _tree = tree;
             _parent = parent;
-            _key = key;
+            _name = name;
             _value = value;
-        }
-
-        #endregion
-
-        #region Methods
-
-        public override TreeNode<TKey, TValue> Create(TKey key, TValue value)
-        {
-            return CreateNodeInternal(this, key, value);
+            _nodes = new TreeNodeCollection<T>(tree, this);
         }
 
         #endregion
 
         #region Properties
 
-        public TreeNode<TKey, TValue> Parent
+        public ITree<T> Tree
+        {
+            get { return _tree; }
+        }
+
+        public ITreeNode<T> Parent
         {
             get { return _parent; }
         }
 
-        public TKey Key
+        public ITreeNodeCollection<T> Nodes
         {
-            get { return _key; }
-        }
-
-        public TValue Value
-        {
-            get { return _value; }
-            set { _value = value; }
+            get { return _nodes; }
         }
 
         public string Name
         {
-            get { return _key.ToString(); }
+            get { return _name; }
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                    throw new ArgumentException($"Cannot be empty", nameof(Name));
+
+                _name = value;
+            }
         }
 
         public string FullName
@@ -73,26 +68,16 @@ namespace PureFreak.Collections
             get
             {
                 if (_parent != null)
-                    return _parent.FullName + _tree.Separator + Name;
+                    return _parent.FullName + _tree.PathSeparator + _name;
 
-                return Name;
+                return _tree.PathSeparator + _name;
             }
         }
 
-        public int Level
+        public T Value
         {
-            get
-            {
-                if (_parent != null)
-                    return _parent.Level + 1;
-
-                return 1;
-            }
-        }
-
-        public override string ToString()
-        {
-            return FullName;
+            get { return _value; }
+            set { _value = value; }
         }
 
         #endregion

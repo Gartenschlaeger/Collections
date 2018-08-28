@@ -10,7 +10,9 @@ namespace PureFreak.Collections
 
         T Get(int index);
 
-        T RemoveLastElement();
+        bool RemoveAt(int index);
+
+        int FindIndex(T value);
 
         T[] ToArray();
 

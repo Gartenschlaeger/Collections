@@ -5,7 +5,7 @@ using System.Text;
 namespace PureFreak.Collections
 {
     [DebuggerDisplay("Capacity = {Capacity}")]
-    public class BitSet
+    public class BitSet : IBitSet
     {
         #region Fields
 

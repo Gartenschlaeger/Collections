@@ -20,6 +20,17 @@
         #endregion
 
         #region Methods
+
+        public ITreeNode<T> Create(string name)
+        {
+            return _nodes.Create(name);
+        }
+
+        public ITreeNode<T> Create(string name, T value)
+        {
+            return _nodes.Create(name, value);
+        }
+
         #endregion
 
         #region Properties

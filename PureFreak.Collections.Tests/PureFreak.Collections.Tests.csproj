@@ -49,6 +49,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BagTests.cs" />
     <Compile Include="BitSetTests.cs" />
     <Compile Include="CirularBufferTests.cs" />
     <Compile Include="ListExtensionTests.cs" />

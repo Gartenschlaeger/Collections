@@ -66,7 +66,7 @@ namespace PureFreak.Collections.Tests
         }
 
         [TestMethod]
-        public void MyTestMethod()
+        public void ShuffleTest()
         {
             var list = new List<int>();
             for (int i = 1; i <= 10; i++)

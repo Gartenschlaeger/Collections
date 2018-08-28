@@ -44,6 +44,11 @@
 
         public static void Shuffle<T>(this List<T> list, Random random)
         {
+            if (list == null)
+                throw new ArgumentNullException(nameof(list));
+            if (random == null)
+                throw new ArgumentNullException(nameof(random));
+
             var max = list.Count;
             while (max > 1)
             {

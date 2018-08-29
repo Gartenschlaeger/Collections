@@ -10,6 +10,7 @@ namespace PureFreak.Collections
         #region Consts
 
         private const int DefaultCapacity = 8;
+        private const SortOrder DefaultSortOrder = SortOrder.Ascending;
 
         #endregion
 
@@ -18,24 +19,27 @@ namespace PureFreak.Collections
         private T[] _data;
         private int _count = 0;
         private IComparer<T> _comparer;
+        private readonly SortOrder _sortOrder;
 
         #endregion
 
         #region Constructor
 
-        public BinaryHeap(int capacity = DefaultCapacity)
+        public BinaryHeap(int capacity = DefaultCapacity, SortOrder sortOrder = DefaultSortOrder)
         {
             _data = new T[capacity];
             _comparer = Comparer<T>.Default;
+            _sortOrder = sortOrder;
         }
 
-        public BinaryHeap(IComparer<T> comparer, int capacity = DefaultCapacity)
+        public BinaryHeap(IComparer<T> comparer, int capacity = DefaultCapacity, SortOrder sortOrder = DefaultSortOrder)
         {
             if (comparer == null)
                 throw new ArgumentNullException(nameof(comparer));
 
             _data = new T[capacity];
             _comparer = comparer;
+            _sortOrder = SortOrder;
         }
 
         #endregion
@@ -50,12 +54,21 @@ namespace PureFreak.Collections
             _data = resizedData;
         }
 
+        private int Compare(T a, T b)
+        {
+            var result = _comparer.Compare(a, b);
+            if (_sortOrder == SortOrder.Descending)
+                return -result;
+
+            return result;
+        }
+
         private void HeapifyUp(int childIdx)
         {
             if (childIdx > 0)
             {
-                int parentIdx = (childIdx - 1) / 2;
-                if (_comparer.Compare(_data[childIdx], _data[parentIdx]) > 0)
+                var parentIdx = (childIdx - 1) / 2;
+                if (Compare(_data[childIdx], _data[parentIdx]) < 0)
                 {
                     // swap parent and child
                     T tmp = _data[parentIdx];
@@ -73,12 +86,12 @@ namespace PureFreak.Collections
             int rightChildIdx = leftChildIdx + 1;
             int largestChildIdx = parentIdx;
 
-            if (leftChildIdx < _count && _comparer.Compare(_data[leftChildIdx], _data[largestChildIdx]) > 0)
+            if (leftChildIdx < _count && Compare(_data[leftChildIdx], _data[largestChildIdx]) < 0)
             {
                 largestChildIdx = leftChildIdx;
             }
 
-            if (rightChildIdx < _count && _comparer.Compare(_data[rightChildIdx], _data[largestChildIdx]) > 0)
+            if (rightChildIdx < _count && Compare(_data[rightChildIdx], _data[largestChildIdx]) < 0)
             {
                 largestChildIdx = rightChildIdx;
             }
@@ -175,6 +188,11 @@ namespace PureFreak.Collections
         public int Count
         {
             get { return _count; }
+        }
+
+        public SortOrder SortOrder
+        {
+            get { return _sortOrder; }
         }
 
         #endregion

@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BagTests.cs" />
+    <Compile Include="BinaryHeapTests.cs" />
     <Compile Include="BitSetTests.cs" />
     <Compile Include="CirularBufferTests.cs" />
     <Compile Include="ListExtensionTests.cs" />

@@ -56,6 +56,7 @@
     <Compile Include="ITreeNodeCollection.cs" />
     <Compile Include="ITreeNodeContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SortOrder.cs" />
     <Compile Include="Tree.cs" />
     <Compile Include="TreeNode.cs" />
     <Compile Include="TreeNodeCollection.cs" />

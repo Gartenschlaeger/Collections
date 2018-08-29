@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>PureFreak.Collections</id>
-    <version>1.0.6</version>
+    <version>1.0.7</version>
     <title>PureFreak.Collections</title>
     <description>Some additinal collection and extensions.</description>
     <authors>Kai Gartenschläger</authors>
@@ -14,7 +14,7 @@
     <licenseUrl>https://raw.githubusercontent.com/PureFreak/Collections/master/LICENSE</licenseUrl>
     <copyright>Copyright 2018</copyright>
 
-    <releaseNotes>Reimplementation of Tree.</releaseNotes>
+    <releaseNotes>Added SortOrder to BinaryHeap.</releaseNotes>
 
     <tags>Tree Bag BinaryHeap CircularBuffer</tags>
   </metadata>

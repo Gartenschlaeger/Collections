@@ -4,6 +4,10 @@ using System.Diagnostics;
 
 namespace PureFreak.Collections
 {
+    /// <summary>
+    /// Represents a binary heap (a priority queue).
+    /// </summary>
+    /// <typeparam name="T">Type of values</typeparam>
     [DebuggerDisplay("Count = {_count}")]
     public sealed class BinaryHeap<T> : IBinaryHeap<T>
     {
@@ -25,6 +29,11 @@ namespace PureFreak.Collections
 
         #region Constructor
 
+        /// <summary>
+        /// Represents a binary heap (priority queue).
+        /// </summary>
+        /// <param name="capacity">Initial capacity of the heap.</param>
+        /// <param name="sortOrder">Sorting direction</param>
         public BinaryHeap(int capacity = DefaultCapacity, SortOrder sortOrder = DefaultSortOrder)
         {
             _data = new T[capacity];
@@ -32,6 +41,12 @@ namespace PureFreak.Collections
             _sortOrder = sortOrder;
         }
 
+        /// <summary>
+        /// Represents a binary heap (priority queue).
+        /// </summary>
+        /// <param name="comparer">Interface of type <see cref="IComparer{T}" /> for sorting of items.</param>
+        /// <param name="capacity">Initial capacity of the heap.</param>
+        /// <param name="sortOrder">Sorting direction</param>
         public BinaryHeap(IComparer<T> comparer, int capacity = DefaultCapacity, SortOrder sortOrder = DefaultSortOrder)
         {
             if (comparer == null)
@@ -110,6 +125,10 @@ namespace PureFreak.Collections
 
         #region Methods
 
+        /// <summary>
+        /// Adds a new item to the heap.
+        /// </summary>
+        /// <param name="item">Item to be add.</param>
         public void Push(T item)
         {
             if (_count == _data.Length)
@@ -124,13 +143,27 @@ namespace PureFreak.Collections
             _count++;
         }
 
+        /// <summary>
+        /// Returns the top item without removing it.
+        /// </summary>
+        /// <returns>Top item of the heap.</returns>
         public T Peak()
         {
+            if (_count == 0)
+                throw new InvalidOperationException("The heap is empty");
+
             return _data[0];
         }
 
+        /// <summary>
+        /// Returns the top item from heap and removes it.
+        /// </summary>
+        /// <returns>Top item of the heap.</returns>
         public T Pop()
         {
+            if (_count == 0)
+                throw new InvalidOperationException("The heap is empty");
+
             T item = _data[0];
 
             _count--;
@@ -141,6 +174,11 @@ namespace PureFreak.Collections
             return item;
         }
 
+        /// <summary>
+        /// Checks if the heap contains the given item.
+        /// </summary>
+        /// <param name="item">Item to check for existence.</param>
+        /// <returns>True if the item is added to the heap.</returns>
         public bool Contains(T item)
         {
             for (int i = 0; i < _count; i++)
@@ -152,6 +190,11 @@ namespace PureFreak.Collections
             return false;
         }
 
+        /// <summary>
+        /// Tries to find a item by a custom filter.
+        /// </summary>
+        /// <param name="match">The delegate to match.</param>
+        /// <returns>The item matched by given delegate or default of type <see cref="T"/>.</returns>
         public T Find(Func<T, bool> match)
         {
             for (int i = 0; i < _count; i++)
@@ -163,6 +206,10 @@ namespace PureFreak.Collections
             return default(T);
         }
 
+        /// <summary>
+        /// Returns an array containing all added items.
+        /// </summary>
+        /// <returns>Array containing all added items in internal order.</returns>
         public T[] ToArray()
         {
             T[] result = new T[_count];
@@ -171,6 +218,11 @@ namespace PureFreak.Collections
             return result;
         }
 
+        /// <summary>
+        /// Returns the item ad the given index.
+        /// </summary>
+        /// <param name="index">Index of item to return.</param>
+        /// <returns>Item at given index position.</returns>
         public T this[int index]
         {
             get { return _data[index]; }
@@ -180,16 +232,25 @@ namespace PureFreak.Collections
 
         #region Properties
 
+        /// <summary>
+        /// Contains the current capacity of the heap.
+        /// </summary>
         public int Capacity
         {
             get { return _data.Length; }
         }
 
+        /// <summary>
+        /// Contains the count of items added to the heap.
+        /// </summary>
         public int Count
         {
             get { return _count; }
         }
 
+        /// <summary>
+        /// Contains the sort order.
+        /// </summary>
         public SortOrder SortOrder
         {
             get { return _sortOrder; }

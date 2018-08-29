@@ -1,5 +1,8 @@
-﻿namespace PureFreak.Collections
+﻿using System.Diagnostics;
+
+namespace PureFreak.Collections
 {
+    [DebuggerDisplay("Count = {Count}")]
     public class Tree<T> : ITree<T>
     {
         #region Fields
@@ -44,6 +47,11 @@
         public ITreeNodeCollection<T> Nodes
         {
             get { return _nodes; }
+        }
+
+        public int Count
+        {
+            get { return _nodes.Count; }
         }
 
         #endregion

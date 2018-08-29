@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace PureFreak.Collections
 {
+    [DebuggerDisplay("Count = {Count}")]
     public class TreeNode<T> : ITreeNode<T>
     {
         #region Fields
@@ -84,7 +86,7 @@ namespace PureFreak.Collections
                 if (_parent != null)
                     return _parent.FullName + _tree.PathSeparator + _name;
 
-                return _tree.PathSeparator + _name;
+                return _name;
             }
         }
 
@@ -92,6 +94,11 @@ namespace PureFreak.Collections
         {
             get { return _value; }
             set { _value = value; }
+        }
+
+        public int Count
+        {
+            get { return _nodes.Count; }
         }
 
         #endregion

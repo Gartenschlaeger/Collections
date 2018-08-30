@@ -1,9 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Diagnostics;
 using System.Text;
 
 namespace PureFreak.Collections
 {
+    /// <summary>
+    /// Represents an dynamic array of bits.
+    /// </summary>
     [DebuggerDisplay("Capacity = {Capacity}")]
     public class BitSet : IBitSet
     {
@@ -15,8 +19,15 @@ namespace PureFreak.Collections
 
         #region Constructor
 
+        /// <summary>
+        /// Represents an dynamic array of bits.
+        /// </summary>
+        /// <param name="capacity">Initial capacity of the array.</param>
         public BitSet(int capacity = 32)
         {
+            if (capacity < 1)
+                throw new ArgumentOutOfRangeException("", "Must have a positive value.");
+
             _array = new BitArray(capacity);
         }
 
@@ -38,18 +49,32 @@ namespace PureFreak.Collections
 
         #region Methods
 
-        public void Set(int index, bool value)
+        /// <summary>
+        /// Sets the status of the given bit index.
+        /// </summary>
+        /// <param name="index">Index of bit to set.</param>
+        /// <param name="status">Status of bit.</param>
+        public void Set(int index, bool status)
         {
             EnsureCapacity(index + 1);
 
-            _array.Set(index, value);
+            _array.Set(index, status);
         }
 
-        public void SetAll(bool value)
+        /// <summary>
+        /// Sets all bits to the given status.
+        /// </summary>
+        /// <param name="status">Status to set.</param>
+        public void SetAll(bool status)
         {
-            _array.SetAll(value);
+            _array.SetAll(status);
         }
 
+        /// <summary>
+        /// Checks if the bit at the given index is set.
+        /// </summary>
+        /// <param name="index">Index of the bit to check.</param>
+        /// <returns>True if the bit is set.</returns>
         public bool IsSet(int index)
         {
             if (index < _array.Length)
@@ -58,11 +83,19 @@ namespace PureFreak.Collections
             return false;
         }
 
+        /// <summary>
+        /// Inverts the status of all bits. 
+        /// True to False and False to True.
+        /// </summary>
         public void Invert()
         {
             _array.Not();
         }
 
+        /// <summary>
+        /// Returns an boolean array representing the bit array.
+        /// </summary>
+        /// <returns>Array of boleans.</returns>
         public bool[] ToArray()
         {
             var result = new bool[_array.Length];
@@ -78,11 +111,18 @@ namespace PureFreak.Collections
 
         #region Properties
 
+        /// <summary>
+        /// The current capacity of the buffer.
+        /// </summary>
         public int Capacity
         {
             get { return _array.Length; }
         }
 
+        /// <summary>
+        /// Returns an string representing the current binary representation of the bits.
+        /// </summary>
+        /// <returns>String representation of the current status of the bits.</returns>
         public override string ToString()
         {
             var buffer = new StringBuilder();

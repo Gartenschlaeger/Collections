@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>PureFreak.Collections</id>
-    <version>1.0.7</version>
+    <version>1.0.8</version>
     <title>PureFreak.Collections</title>
     <description>Some additinal collection and extensions.</description>
     <authors>Kai Gartenschläger</authors>
@@ -16,7 +16,7 @@
 
     <releaseNotes>Added SortOrder to BinaryHeap.</releaseNotes>
 
-    <tags>Tree Bag BinaryHeap CircularBuffer</tags>
+    <tags>Added some xml comments</tags>
   </metadata>
 
   <files>

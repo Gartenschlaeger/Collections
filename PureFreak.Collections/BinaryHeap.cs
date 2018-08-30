@@ -194,7 +194,7 @@ namespace PureFreak.Collections
         /// Tries to find a item by a custom filter.
         /// </summary>
         /// <param name="match">The delegate to match.</param>
-        /// <returns>The item matched by given delegate or default of type <see cref="T"/>.</returns>
+        /// <returns>The item matched by given delegate or the default value.</returns>
         public T Find(Func<T, bool> match)
         {
             for (int i = 0; i < _count; i++)

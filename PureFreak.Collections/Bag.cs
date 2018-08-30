@@ -5,6 +5,10 @@ using System.Diagnostics;
 
 namespace PureFreak.Collections
 {
+    /// <summary>
+    /// Represents a bag.
+    /// </summary>
+    /// <typeparam name="T">Type of the values.</typeparam>
     [DebuggerDisplay("Count = {_count}")]
     public class Bag<T> : IBag<T>
     {
@@ -18,6 +22,10 @@ namespace PureFreak.Collections
 
         #region Constructor
 
+        /// <summary>
+        /// Represents a bag.
+        /// </summary>
+        /// <param name="capacity">Initial capacity of the buffer.</param>
         public Bag(int capacity = 100)
         {
             _buffer = new T[capacity];
@@ -59,6 +67,10 @@ namespace PureFreak.Collections
 
         #region Methods
 
+        /// <summary>
+        /// Added a new value.
+        /// </summary>
+        /// <param name="value">Value to be add.</param>
         public void Add(T value)
         {
             EnsureCapacity(_count + 1);
@@ -69,6 +81,11 @@ namespace PureFreak.Collections
             _count++;
         }
 
+        /// <summary>
+        /// Sets the value at the given index.
+        /// </summary>
+        /// <param name="index">Index of item to change.</param>
+        /// <param name="value">Value to be set.</param>
         public void Set(int index, T value)
         {
             EnsureCapacity(index + 1);
@@ -80,6 +97,12 @@ namespace PureFreak.Collections
             _buffer[index] = value;
         }
 
+        /// <summary>
+        /// Returns the value at the given index.
+        /// If the index is out of range the default value will be returned.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns>Item at given index or the default value.</returns>
         public T Get(int index)
         {
             if (index < _index.Length && _index[index])
@@ -88,6 +111,9 @@ namespace PureFreak.Collections
             return default(T);
         }
 
+        /// <summary>
+        /// Removes all items.
+        /// </summary>
         public void Clear()
         {
             for (int i = 0; i < _count; i++)
@@ -99,11 +125,21 @@ namespace PureFreak.Collections
             _count = 0;
         }
 
+        /// <summary>
+        /// Checks if the given value is present in the bag.
+        /// </summary>
+        /// <param name="value">Value to check for existence.</param>
+        /// <returns>True if the value is present in the bag.</returns>
         public bool Contains(T value)
         {
             return (FindIndex(value) != -1);
         }
 
+        /// <summary>
+        /// Tries to find the index of the item value matching the given value.
+        /// </summary>
+        /// <param name="value">Value to search for.</param>
+        /// <returns>True if a matching item has been found.</returns>
         public int FindIndex(T value)
         {
             for (int i = 0; i < _index.Length; i++)
@@ -115,6 +151,11 @@ namespace PureFreak.Collections
             return -1;
         }
 
+        /// <summary>
+        /// Removes the item matching the given value.
+        /// </summary>
+        /// <param name="value">Value to match</param>
+        /// <returns>True if the item has been removed.</returns>
         public bool Remove(T value)
         {
             var index = FindIndex(value);
@@ -124,6 +165,11 @@ namespace PureFreak.Collections
             return false;
         }
 
+        /// <summary>
+        /// Removes the item at the given index.
+        /// </summary>
+        /// <param name="index">Index of the item to be remove.</param>
+        /// <returns>True if the item has been removed.</returns>
         public bool RemoveAt(int index)
         {
             if (index < _index.Length && _index[index])
@@ -138,6 +184,10 @@ namespace PureFreak.Collections
             return false;
         }
 
+        /// <summary>
+        /// Returns an array representing all items currently added to the bag.
+        /// </summary>
+        /// <returns>An array containing all added items.</returns>
         public T[] ToArray()
         {
             var result = new T[_count];
@@ -155,11 +205,20 @@ namespace PureFreak.Collections
             return result;
         }
 
+        /// <summary>
+        /// Copies the added items to the given array.
+        /// </summary>
+        /// <param name="array">Destination array to copy the items to.</param>
+        /// <param name="arrayIndex">Start index in the destination array.</param>
         public void CopyTo(T[] array, int arrayIndex)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Returns an instance of type <see cref="IEnumerator{T}"/> to iterare the items.
+        /// </summary>
+        /// <returns>Instance of type <see cref="IEnumerator{T}"/>.</returns>
         public IEnumerator<T> GetEnumerator()
         {
             for (int i = 0; i < _index.Length; i++)
@@ -169,11 +228,21 @@ namespace PureFreak.Collections
             }
         }
 
+        /// <summary>
+        /// Returns an instance of type <see cref="IEnumerator"/> to iterare the items.
+        /// </summary>
+        /// <returns>Instance of type <see cref="IEnumerator"/>.</returns>
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
         }
 
+        /// <summary>
+        /// Returns the value at the given index.
+        /// If the index is out of range the default value will be returned.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns>Item at given index or the default value.</returns>
         public T this[int index]
         {
             get { return Get(index); }
@@ -184,11 +253,18 @@ namespace PureFreak.Collections
 
         #region Properties
 
+        /// <summary>
+        /// Contains the count of added items.
+        /// </summary>
         public int Count
         {
             get { return _count; }
         }
 
+        /// <summary>
+        /// Returns True if the bag is in readonly mode.
+        /// For <see cref="Bag{T}"/> the result is always False.
+        /// </summary>
         public bool IsReadOnly
         {
             get { return false; }

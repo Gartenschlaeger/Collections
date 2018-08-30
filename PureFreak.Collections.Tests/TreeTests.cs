@@ -67,6 +67,19 @@ namespace PureFreak.Collections.Tests
             tree.Nodes.Create("test.txt");
         }
 
+        [TestMethod]
+        public void LevelTest()
+        {
+            var tree = new Tree<string>();
+            var node1 = tree.Create("Level1");
+            var node2 = node1.Create("Level2");
+            var node3 = node2.Create("Level3");
+
+            Assert.AreEqual(1, node1.Level);
+            Assert.AreEqual(2, node2.Level);
+            Assert.AreEqual(3, node3.Level);
+        }
+
         #endregion
     }
 }

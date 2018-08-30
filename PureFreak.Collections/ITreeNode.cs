@@ -11,6 +11,8 @@
 
         string FullName { get; }
 
+        int Level { get; }
+
         T Value { get; set; }
 
         ITree<T> Tree { get; }

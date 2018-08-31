@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>PureFreak.Collections</id>
-    <version>1.0.9</version>
+    <version>1.0.10</version>
     <title>PureFreak.Collections</title>
     <description>Some additinal collection and extensions.</description>
     <authors>Kai Gartenschläger</authors>
@@ -14,7 +14,7 @@
     <licenseUrl>https://raw.githubusercontent.com/PureFreak/Collections/master/LICENSE</licenseUrl>
     <copyright>Copyright 2018</copyright>
 
-    <releaseNotes>Added some xml comments.</releaseNotes>
+    <releaseNotes>Added GetDescendants methods to Tree and TreeNode.</releaseNotes>
 
     <tags>Tree Bag BinaryHeap CircularBuffer</tags>
   </metadata>

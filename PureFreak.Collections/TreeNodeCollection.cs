@@ -34,6 +34,26 @@ namespace PureFreak.Collections
 
         #endregion
 
+        //#region Helper
+
+        //private IEnumerable<ITreeNode<T>> GetDescendantsInternal(ITreeNodeCollection<T> collection)
+        //{
+        //    foreach (var node in collection)
+        //    {
+        //        yield return node;
+
+        //        if (node.Nodes.Count > 0)
+        //        {
+        //            foreach (var childNode in GetDescendantsInternal(node.Nodes))
+        //            {
+        //                yield return childNode;
+        //            }
+        //        }
+        //    }
+        //}
+
+        //#endregion
+
         #region Methods
 
         /// <summary>
@@ -74,6 +94,42 @@ namespace PureFreak.Collections
                 return node;
 
             return null;
+        }
+
+        /// <summary>
+        /// Returns the descendant nodes. 
+        /// </summary>
+        /// <returns>Descendant nodes</returns>
+        public IEnumerable<ITreeNode<T>> GetDescendantNodes()
+        {
+            var queue = new Queue<ITreeNodeCollection<T>>();
+            queue.Enqueue(this);
+
+            while (queue.Count > 0)
+            {
+                var collection = queue.Dequeue();
+                foreach (var node in collection)
+                {
+                    if (node.Nodes.Count > 0)
+                        queue.Enqueue(node.Nodes);
+
+                    yield return node;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Returns the descendant nodes matching the given filter delegate. 
+        /// </summary>
+        /// <param name="filter">Filter delegate</param>
+        /// <returns>Descendant nodes</returns>
+        public IEnumerable<ITreeNode<T>> GetDescendantNodes(Func<ITreeNode<T>, bool> filter)
+        {
+            foreach (var node in GetDescendantNodes())
+            {
+                if (filter(node))
+                    yield return node;
+            }
         }
 
         /// <summary>
@@ -148,7 +204,10 @@ namespace PureFreak.Collections
         /// <returns>Instance of type <see cref="IEnumerator{T}"/>.</returns>
         public IEnumerator<ITreeNode<T>> GetEnumerator()
         {
-            throw new NotImplementedException();
+            foreach (var node in _nodes)
+            {
+                yield return node.Value;
+            }
         }
 
         #endregion

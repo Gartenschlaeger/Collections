@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace PureFreak.Collections
 {
@@ -15,6 +16,10 @@ namespace PureFreak.Collections
         bool Remove(ITreeNode<T> node);
 
         ITreeNode<T> Get(string name);
+
+        IEnumerable<ITreeNode<T>> GetDescendantNodes();
+
+        IEnumerable<ITreeNode<T>> GetDescendantNodes(Func<ITreeNode<T>, bool> match);
 
         bool Contains(string name);
 

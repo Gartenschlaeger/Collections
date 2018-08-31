@@ -1,4 +1,7 @@
-﻿namespace PureFreak.Collections
+﻿using System;
+using System.Collections.Generic;
+
+namespace PureFreak.Collections
 {
     public interface ITreeNodeContainer<T>
     {

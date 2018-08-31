@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Linq;
 
 namespace PureFreak.Collections.Tests
 {
@@ -78,6 +79,47 @@ namespace PureFreak.Collections.Tests
             Assert.AreEqual(1, node1.Level);
             Assert.AreEqual(2, node2.Level);
             Assert.AreEqual(3, node3.Level);
+        }
+
+        [TestMethod]
+        public void GetDescendantsTest()
+        {
+            var tree = new Tree<string>();
+            var n11 = tree.Create("Level 1/1");
+            var n21 = n11.Create("Level 2/1");
+            var n22 = n11.Create("Level 2/2");
+            var n31 = n21.Create("Level 3/1");
+            var n41 = n31.Create("Level 4/1");
+
+            var descendants = tree.Nodes
+                .GetDescendantNodes()
+                .ToArray();
+
+            Assert.AreEqual(5, descendants.Length);
+            Assert.AreEqual(n11, descendants[0]);
+            Assert.AreEqual(n21, descendants[1]);
+            Assert.AreEqual(n22, descendants[2]);
+            Assert.AreEqual(n31, descendants[3]);
+            Assert.AreEqual(n41, descendants[4]);
+        }
+
+        [TestMethod]
+        public void GetDescendantsFilteredTest()
+        {
+            var tree = new Tree<string>();
+            var n11 = tree.Create("Level 1/1");
+            var n21 = n11.Create("Level 2/1");
+            var n22 = n11.Create("Level 2/2");
+            var n31 = n21.Create("Level 3/1");
+            var n41 = n31.Create("Level 4/1");
+
+            var descendants = tree.Nodes
+                .GetDescendantNodes(n => n.Name.IndexOf("2") != -1)
+                .ToArray();
+
+            Assert.AreEqual(2, descendants.Length);
+            Assert.AreEqual(n21, descendants[0]);
+            Assert.AreEqual(n22, descendants[1]);
         }
 
         #endregion

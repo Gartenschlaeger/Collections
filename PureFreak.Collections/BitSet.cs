@@ -9,6 +9,7 @@ namespace PureFreak.Collections
     /// Represents an dynamic array of bits.
     /// </summary>
     [DebuggerDisplay("Capacity = {Capacity}")]
+    [DebuggerTypeProxy(typeof(BitSetDebuggerView))]
     public class BitSet : IBitSet
     {
         #region Fields

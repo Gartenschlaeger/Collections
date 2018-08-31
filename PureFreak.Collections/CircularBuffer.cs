@@ -8,6 +8,7 @@ namespace PureFreak.Collections
     /// </summary>
     /// <typeparam name="T">Typ of values.</typeparam>
     [DebuggerDisplay("Count = {_count}")]
+    [DebuggerTypeProxy(typeof(CircularBufferDebuggerView<>))]
     public class CircularBuffer<T> : ICircularBuffer<T>
     {
         #region Fields

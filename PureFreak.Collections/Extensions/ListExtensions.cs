@@ -1,11 +1,11 @@
 ﻿namespace System.Collections.Generic
 {
     /// <summary>
-    /// Contains extensions for <see cref="List{T}"/>
+    /// Contains extension methods for <see cref="List{T}"/>
     /// </summary>
     public static class ListExtensions
     {
-        #region Methods
+        #region Extension methods
 
         /// <summary>
         /// Switches two list elements.

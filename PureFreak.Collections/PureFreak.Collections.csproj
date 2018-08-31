@@ -47,6 +47,8 @@
     <Compile Include="BitSet.cs" />
     <Compile Include="CircularBuffer.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
+    <Compile Include="Extensions\QueueExtensions.cs" />
+    <Compile Include="Extensions\StackExtensions.cs" />
     <Compile Include="IBag.cs" />
     <Compile Include="IBinaryHeap.cs" />
     <Compile Include="IBitSet.cs" />

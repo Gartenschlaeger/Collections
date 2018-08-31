@@ -8,7 +8,8 @@ namespace PureFreak.Collections
     /// Represents a node.
     /// </summary>
     /// <typeparam name="T">Type of the node value.</typeparam>
-    [DebuggerDisplay("Count = {Count}")]
+    [DebuggerDisplay("{Name} ({Count} Nodes)")]
+    [DebuggerTypeProxy(typeof(TreeNodeDebuggerView<>))]
     public class TreeNode<T> : ITreeNode<T>
     {
         #region Fields

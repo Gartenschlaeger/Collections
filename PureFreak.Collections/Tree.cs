@@ -8,7 +8,8 @@ namespace PureFreak.Collections
     /// Represents a tree with generic values.
     /// </summary>
     /// <typeparam name="T">Typ of node values.</typeparam>
-    [DebuggerDisplay("Count = {Count}")]
+    [DebuggerDisplay("{Count} Nodes")]
+    [DebuggerTypeProxy(typeof(TreeDebuggerView<>))]
     public class Tree<T> : ITree<T>
     {
         #region Fields

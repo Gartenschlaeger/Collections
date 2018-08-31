@@ -54,6 +54,10 @@ namespace PureFreak.Collections
             return _nodes.Create(name, value);
         }
 
+        /// <summary>
+        /// Returns the descendant nodes. 
+        /// </summary>
+        /// <returns>Descendant nodes</returns>
         public IEnumerable<ITreeNode<T>> GetDescendantNodes()
         {
             var queue = new Queue<ITreeNode<T>>();
@@ -71,6 +75,11 @@ namespace PureFreak.Collections
             }
         }
 
+        /// <summary>
+        /// Returns the descendant nodes matching the given filter delegate. 
+        /// </summary>
+        /// <param name="filter">Filter delegate</param>
+        /// <returns>Descendant nodes</returns>
         public IEnumerable<ITreeNode<T>> GetDescendantNodes(Func<ITreeNode<T>, bool> filter)
         {
             foreach (var node in GetDescendantNodes())

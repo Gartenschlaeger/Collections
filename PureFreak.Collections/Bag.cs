@@ -10,6 +10,7 @@ namespace PureFreak.Collections
     /// </summary>
     /// <typeparam name="T">Type of the values.</typeparam>
     [DebuggerDisplay("Count = {_count}")]
+    [DebuggerTypeProxy(typeof(BagDebuggerView<>))]
     public class Bag<T> : IBag<T>
     {
         #region Fields

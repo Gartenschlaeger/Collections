@@ -45,6 +45,7 @@
     <Compile Include="Bag.cs" />
     <Compile Include="BagDebuggerView.cs" />
     <Compile Include="BinaryHeap.cs" />
+    <Compile Include="BinaryHeapDebuggerView.cs" />
     <Compile Include="BitSet.cs" />
     <Compile Include="CircularBuffer.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />

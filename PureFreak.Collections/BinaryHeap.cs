@@ -9,6 +9,7 @@ namespace PureFreak.Collections
     /// </summary>
     /// <typeparam name="T">Type of values</typeparam>
     [DebuggerDisplay("Count = {_count}")]
+    [DebuggerTypeProxy(typeof(BinaryHeapDebuggerView<>))]
     public sealed class BinaryHeap<T> : IBinaryHeap<T>
     {
         #region Consts

@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace PureFreak.Collections
 {
@@ -50,6 +52,32 @@ namespace PureFreak.Collections
         public ITreeNode<T> Create(string name, T value)
         {
             return _nodes.Create(name, value);
+        }
+
+        public IEnumerable<ITreeNode<T>> GetDescendantNodes()
+        {
+            var queue = new Queue<ITreeNode<T>>();
+            queue.EnqueueRange(_nodes);
+
+            while (queue.Count > 0)
+            {
+                var currentNode = queue.Dequeue();
+                yield return currentNode;
+
+                foreach (var node in currentNode.Nodes)
+                {
+                    queue.Enqueue(node);
+                }
+            }
+        }
+
+        public IEnumerable<ITreeNode<T>> GetDescendantNodes(Func<ITreeNode<T>, bool> filter)
+        {
+            foreach (var node in GetDescendantNodes())
+            {
+                if (filter(node))
+                    yield return node;
+            }
         }
 
         #endregion

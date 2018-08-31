@@ -11,6 +11,10 @@ namespace PureFreak.Collections
 
         ITreeNode<T> Create(string name, T value);
 
+        IEnumerable<ITreeNode<T>> GetDescendantNodes();
+
+        IEnumerable<ITreeNode<T>> GetDescendantNodes(Func<ITreeNode<T>, bool> filter);
+
         #endregion
 
         #region Properties

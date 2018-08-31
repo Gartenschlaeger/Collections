@@ -85,22 +85,26 @@ namespace PureFreak.Collections.Tests
         public void GetDescendantsTest()
         {
             var tree = new Tree<string>();
-            var n11 = tree.Create("Level 1/1");
-            var n21 = n11.Create("Level 2/1");
-            var n22 = n11.Create("Level 2/2");
-            var n31 = n21.Create("Level 3/1");
-            var n41 = n31.Create("Level 4/1");
+            var n11 = tree.Create("1/1");
+            var n21 = n11.Create("2/1");
+            var n22 = n11.Create("2/2");
+            var n31 = n21.Create("3/1");
+            var n41 = n31.Create("4/1");
 
-            var descendants = tree.Nodes
-                .GetDescendantNodes()
-                .ToArray();
+            var allDescendants = tree.GetDescendantNodes().ToArray();
 
-            Assert.AreEqual(5, descendants.Length);
-            Assert.AreEqual(n11, descendants[0]);
-            Assert.AreEqual(n21, descendants[1]);
-            Assert.AreEqual(n22, descendants[2]);
-            Assert.AreEqual(n31, descendants[3]);
-            Assert.AreEqual(n41, descendants[4]);
+            Assert.AreEqual(5, allDescendants.Length);
+            Assert.AreEqual(n11, allDescendants[0]);
+            Assert.AreEqual(n21, allDescendants[1]);
+            Assert.AreEqual(n22, allDescendants[2]);
+            Assert.AreEqual(n31, allDescendants[3]);
+            Assert.AreEqual(n41, allDescendants[4]);
+
+            var level2Descendants = n21.GetDescendantNodes().ToArray();
+
+            Assert.AreEqual(2, level2Descendants.Length);
+            Assert.AreEqual(n31, level2Descendants[0]);
+            Assert.AreEqual(n41, level2Descendants[1]);
         }
 
         [TestMethod]
@@ -113,9 +117,7 @@ namespace PureFreak.Collections.Tests
             var n31 = n21.Create("Level 3/1");
             var n41 = n31.Create("Level 4/1");
 
-            var descendants = tree.Nodes
-                .GetDescendantNodes(n => n.Name.IndexOf("2") != -1)
-                .ToArray();
+            var descendants = tree.GetDescendantNodes(n => n.Name.IndexOf("2") != -1).ToArray();
 
             Assert.AreEqual(2, descendants.Length);
             Assert.AreEqual(n21, descendants[0]);

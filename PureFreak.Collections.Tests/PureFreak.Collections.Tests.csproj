@@ -54,6 +54,8 @@
     <Compile Include="BitSetTests.cs" />
     <Compile Include="CirularBufferTests.cs" />
     <Compile Include="ListExtensionTests.cs" />
+    <Compile Include="QueueExtensionsTests.cs" />
+    <Compile Include="StackExtensionsTests.cs" />
     <Compile Include="TreeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

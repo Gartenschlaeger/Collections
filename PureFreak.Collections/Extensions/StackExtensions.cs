@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace PureFreak.Collections.Extensions
+﻿namespace System.Collections.Generic
 {
     /// <summary>
     /// Contains extension methods for <see cref="Stack{T}"/>.
